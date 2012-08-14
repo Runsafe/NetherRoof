@@ -2,11 +2,12 @@
   <artifact type="jar" build-on-make="true" name="NetherRoof">
     <output-path>$PROJECT_DIR$/../out</output-path>
     <root id="archive" name="NetherRoof.jar">
-      <element id="file-copy" path="$PROJECT_DIR$/src/Plugin.yml" />
+      <element id="file-copy" path="$PROJECT_DIR$/src/plugin.yml" />
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
       </element>
       <element id="file-copy" path="$PROJECT_DIR$/src/defaults.yml" />
+      <element id="module-output" name="NetherRoof" />
     </root>
   </artifact>
 </component>
