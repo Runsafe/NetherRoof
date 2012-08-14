@@ -1,0 +1,4 @@
+worlds:
+- nether
+limits:
+  nether: 127

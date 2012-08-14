@@ -1,0 +1,6 @@
+name: NetherRoof
+main: no.runsafe.netherroof.Plugin
+version: 1.0
+authors: [mortenn]
+depend: []
+description: A simple plugin to stop people building on the top of the Nether.
