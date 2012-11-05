@@ -2,37 +2,35 @@ package no.runsafe.netherroof;
 
 import no.runsafe.framework.configuration.IConfiguration;
 import no.runsafe.framework.event.IConfigurationChanged;
-import no.runsafe.framework.event.block.IBlockPlaceEvent;
+import no.runsafe.framework.event.block.IBlockPlace;
 import no.runsafe.framework.output.IOutput;
-import no.runsafe.framework.server.event.block.RunsafeBlockPlaceEvent;
+import no.runsafe.framework.server.block.RunsafeBlock;
+import no.runsafe.framework.server.player.RunsafePlayer;
 
 import java.util.HashMap;
 
-public class RoofEnforcer implements IBlockPlaceEvent, IConfigurationChanged
+public class RoofEnforcer implements IBlockPlace, IConfigurationChanged
 {
-	public RoofEnforcer(IConfiguration configuration, IOutput output)
+	public RoofEnforcer(IOutput output)
 	{
-		this.config = configuration;
 		this.console = output;
 	}
 
 	@Override
-	public void OnBlockPlaceEvent(RunsafeBlockPlaceEvent event)
+	public boolean OnBlockPlace(RunsafePlayer player, RunsafeBlock block)
 	{
-		String world = event.getPlayer().getWorld().getName();
-		if (limits.containsKey(world) && limits.get(world) < event.getBlockPlaced().getLocation().getBlockY())
-			event.setCancelled(true);
+		String world = player.getWorld().getName();
+		return !(limits.containsKey(world) && limits.get(world) < block.getLocation().getBlockY());
 	}
 
 	@Override
-	public void OnConfigurationChanged()
+	public void OnConfigurationChanged(IConfiguration configuration)
 	{
 		limits.clear();
-		for (String world : config.getConfigValueAsList("worlds"))
-			limits.put(world, config.getConfigValueAsInt(String.format("limits.%s", world)));
+		for (String world : configuration.getConfigValueAsList("worlds"))
+			limits.put(world, configuration.getConfigValueAsInt(String.format("limits.%s", world)));
 	}
 
-	private final IConfiguration config;
 	private final IOutput console;
 	private final HashMap<String, Integer> limits = new HashMap<String, Integer>();
 }
