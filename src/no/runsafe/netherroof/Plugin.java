@@ -1,7 +1,7 @@
 package no.runsafe.netherroof;
 
 import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.configuration.IConfigurationFile;
+import no.runsafe.framework.api.IConfigurationFile;
 
 import java.io.InputStream;
 
