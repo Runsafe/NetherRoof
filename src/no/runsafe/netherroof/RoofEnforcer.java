@@ -4,14 +4,14 @@ import no.runsafe.framework.api.IConfiguration;
 import no.runsafe.framework.api.block.IBlock;
 import no.runsafe.framework.api.event.block.IBlockPlace;
 import no.runsafe.framework.api.event.plugin.IConfigurationChanged;
-import no.runsafe.framework.minecraft.player.RunsafePlayer;
+import no.runsafe.framework.api.player.IPlayer;
 
 import java.util.HashMap;
 
 public class RoofEnforcer implements IBlockPlace, IConfigurationChanged
 {
 	@Override
-	public boolean OnBlockPlace(RunsafePlayer player, IBlock block)
+	public boolean OnBlockPlace(IPlayer player, IBlock block)
 	{
 		String world = player.getWorldName();
 		return !(limits.containsKey(world) && limits.get(world) < block.getLocation().getBlockY());
