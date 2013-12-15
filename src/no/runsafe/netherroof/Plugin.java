@@ -1,27 +1,14 @@
 package no.runsafe.netherroof;
 
-import no.runsafe.framework.RunsafePlugin;
-import no.runsafe.framework.api.IConfigurationFile;
+import no.runsafe.framework.RunsafeConfigurablePlugin;
+import no.runsafe.framework.features.Events;
 
-import java.io.InputStream;
-
-public class Plugin extends RunsafePlugin implements IConfigurationFile
+public class Plugin extends RunsafeConfigurablePlugin
 {
 	@Override
 	protected void PluginSetup()
 	{
+		addComponent(Events.class);
 		addComponent(RoofEnforcer.class);
-	}
-
-	@Override
-	public String getConfigurationPath()
-	{
-		return "plugins/" + getName() + "/config.yml";
-	}
-
-	@Override
-	public InputStream getDefaultConfiguration()
-	{
-		return getResource("defaults.yml");
 	}
 }
