@@ -25,5 +25,5 @@ public class RoofEnforcer implements IBlockPlace, IConfigurationChanged
 			limits.put(world, configuration.getConfigValueAsInt(String.format("limits.%s", world)));
 	}
 
-	private final HashMap<String, Integer> limits = new HashMap<String, Integer>();
+	private final HashMap<String, Integer> limits = new HashMap<>();
 }
